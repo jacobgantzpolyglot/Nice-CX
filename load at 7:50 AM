@@ -1,0 +1,26 @@
+// ==UserScript==
+// @name         load at 7:50 AM
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  fuck attendance
+// @author       You
+// @match        https://home-c72.niceincontact.com/inContact/Manage/Users/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=craiglotter.co.za
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    //the window reload function. you could of course do anything here
+    var now = new Date();
+
+    var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 7, 50, 0, 0) - now;
+    if (millisTill10 < 0) {
+        millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
+    }
+    setTimeout(function(){
+        document.getElementsByClassName("app-picker-panel")[0].click();
+        setTimeout(function(){document.getElementById('select-max').click();}, 3000);}
+               , millisTill10);
+    // Your code here...
+})();
